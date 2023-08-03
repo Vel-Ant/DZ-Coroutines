@@ -1,7 +1,6 @@
 package ru.netology.coroutines
 
 import com.google.gson.Gson
-import com.google.gson.JsonParseException
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
 import okhttp3.*
@@ -30,15 +29,9 @@ fun main() {
                 val posts = getPosts(client)
                     .map { post ->
                         async {
-//                            PostWithComments(
-//                                post,
-//                                getAuthorsPost(client, post.authorId),
-//                                getComments(client, post.id).map { comment ->
-//                                    CommentWithAuthors(comment, getAuthorsPost(client, comment.authorId))
-//                                }
-//                            )
                             PostWithComments(
                                 post,
+                                getAuthorsPost(client, post.authorId),
                                 getComments(client, post.id).map { comment ->
                                     CommentWithAuthors(comment, getAuthorsPost(client, comment.authorId))
                                 }

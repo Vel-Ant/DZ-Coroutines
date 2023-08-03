@@ -164,3 +164,4 @@ client.test("Request executed successfully", function() {
   client.assert(response.contentType.mimeType === 'image/jpeg', "Invalid mime type");
 });
 %}
+
